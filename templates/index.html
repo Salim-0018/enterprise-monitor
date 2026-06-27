@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enterprise Infrastructure Monitoring</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+
+<header class="header">
+    <h1>🚀 Enterprise Infrastructure Monitoring Platform</h1>
+    <p>Production Environment</p>
+</header>
+
+<div class="container">
+
+    <div class="card">
+        <h3>🖥 Hostname</h3>
+        <p id="hostname">Loading...</p>
+    </div>
+
+    <div class="card">
+        <h3>⚙ CPU Usage</h3>
+        <p id="cpu">Loading...</p>
+    </div>
+
+    <div class="card">
+        <h3>🧠 Memory Usage</h3>
+        <p id="memory">Loading...</p>
+    </div>
+
+    <div class="card">
+        <h3>💾 Disk Usage</h3>
+        <p id="disk">Loading...</p>
+    </div>
+
+    <div class="card">
+        <h3>⏱ Uptime</h3>
+        <p id="uptime">Loading...</p>
+    </div>
+
+    <div class="card">
+        <h3>🕒 Current Time</h3>
+        <p id="time">Loading...</p>
+    </div>
+
+    <div class="card">
+        <h3>❤️ Server Health</h3>
+        <p id="health">Loading...</p>
+    </div>
+
+
+
+
+</div>
+
+<footer>
+    <p>Version 1.0 | TechNova Solutions | Developed by Salim Khan</p>
+</footer>
+
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+</body>
+</html>

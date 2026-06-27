@@ -1,11 +1,11 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, render_template
 from api.linux import get_linux_stats
 
 app = Flask(__name__)
 
 @app.route("/")
-def home():
-    return "<h1>Enterprise Infrastructure Monitoring Platform</h1><p>API Running...</p>"
+def dashboard():
+    return render_template("index.html")
 
 @app.route("/api/linux")
 def linux():
