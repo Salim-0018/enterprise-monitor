@@ -27,3 +27,28 @@
 ### 📫 Contact
 - Email: deadsniper221@gmail.com
 - LinkedIn: https://linkedin.com/in/salim-khan-78272b263
+
+
+## 🏗️ Architecture
+
+GitHub Repository
+
+↓
+
+Jenkins Pipeline
+
+↓
+
+Docker Build & Run
+
+↓
+
+AWS EC2 Server
+
+↓
+
+Enterprise Monitor Dashboard
+
+↓
+
+Users / Browser
