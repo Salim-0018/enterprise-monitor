@@ -18,9 +18,16 @@ pipeline {
 
         stage('Docker Build') {
             steps {
-                sh 'docker --version'
+                sh 'docker build -t enterprise-monitor:latest .'
             }
         }
+
+      stage('Verify image') {
+          steps {
+               sh 'Docker image'
+            }
+       }
+
 
         stage('Complete') {
             steps {
