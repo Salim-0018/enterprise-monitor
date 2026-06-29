@@ -22,16 +22,15 @@ pipeline {
             }
         }
 
-      stage('Verify image') {
-          steps {
-               sh 'Docker image'
+        stage('Verify Image') {
+            steps {
+                sh 'docker images'
             }
-       }
-
+        }
 
         stage('Complete') {
             steps {
-                echo 'Enterprise Monitor Pipeline Completed'
+                echo 'Enterprise Monitor Pipeline Completed Successfully!'
             }
         }
     }
