@@ -54,12 +54,18 @@ pipeline {
         }
     }
 
-    post {
-        success {
-            echo "Pipeline Completed Successfully!"
-        }
-        failure {
-            echo "Pipeline Failed!"
-        }
+      post {
+          success {
+               echo "Pipeline Completed Successfully!"
+
+    }
+
+          failure {
+                echo "Pipeline Failed!"
+    }
+
+          always {
+                sh 'docker logout || true'
+                cleanWs()
     }
 }
