@@ -1,37 +1,65 @@
 pipeline {
     agent any
 
+    environment {
+        IMAGE_NAME = "paul48/enterprise-monitor:latest"
+    }
+
     stages {
 
         stage('Checkout') {
             steps {
-                echo 'Repository Checked Out'
+                checkout scm
             }
         }
 
-        stage('Build') {
+        stage('Build Docker Image') {
             steps {
-                sh 'pwd'
-                sh 'ls -la'
+                sh 'docker build -t $IMAGE_NAME .'
             }
         }
 
-        stage('Docker Build') {
+        stage('Docker Login') {
             steps {
-                sh 'docker build -t enterprise-monitor:latest .'
+                withCredentials([usernamePassword(
+                    credentialsId: 'dockerhub-creds',
+                    usernameVariable: 'DOCKER_USER',
+                    passwordVariable: 'DOCKER_PASS'
+                )]) {
+                    sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+                }
             }
         }
 
-        stage('Verify Image') {
+        stage('Push Docker Image') {
             steps {
-                sh 'docker images'
+                sh 'docker push $IMAGE_NAME'
             }
         }
 
-        stage('Complete') {
+        stage('Deploy to Kubernetes') {
             steps {
-                echo 'Enterprise Monitor Pipeline Completed Successfully!'
+                sh '''
+                kubectl apply -f k8s/deployment.yaml
+                kubectl apply -f k8s/service.yaml
+                '''
             }
+        }
+
+        stage('Verify Deployment') {
+            steps {
+                sh 'kubectl get pods'
+                sh 'kubectl get svc'
+            }
+        }
+    }
+
+    post {
+        success {
+            echo "Pipeline Completed Successfully!"
+        }
+        failure {
+            echo "Pipeline Failed!"
         }
     }
 }

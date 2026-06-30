@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+
+metadata:
+  name: enterprise-monitor
+
+spec:
+  replicas: 2
+
+  selector:
+    matchLabels:
+      app: enterprise-monitor
+
+  template:
+    metadata:
+      labels:
+        app: enterprise-monitor
+
+    spec:
+      containers:
+      - name: enterprise-monitor
+
+        image: paul48/enterprise-monitor:latest
+
+        ports:
+        - containerPort: 5000
